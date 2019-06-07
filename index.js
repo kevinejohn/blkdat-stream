@@ -29,6 +29,7 @@ module.exports = function BlkDatStream (blkMagicInt) {
 
         // read magic number from the magic header
         var magicInt = buffer.readUInt32LE(0)
+        if (magicInt === 0x00000000) break
         if (magicInt !== blkMagicInt) throw new Error('Unexpected data')
 
         // read block length from the magic header
